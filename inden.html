@@ -1,0 +1,420 @@
+
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SchoolPro</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f1f5f9;
+ color:#1e293b;
+}
+header{
+ background:#123b72;
+ color:white;
+ padding:22px;
+}
+header h1{margin:0;font-size:26px}
+header p{margin-bottom:0}
+.container{padding:18px}
+.card{
+ background:white;
+ padding:18px;
+ border-radius:13px;
+ margin-bottom:15px;
+ box-shadow:0 2px 8px #0001;
+}
+.stats{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+}
+.stat{
+ background:white;
+ padding:18px;
+ border-radius:13px;
+}
+.stat p{
+ font-size:25px;
+ font-weight:bold;
+ color:#123b72;
+}
+button{
+ border:0;
+ padding:13px;
+ border-radius:8px;
+ background:#123b72;
+ color:white;
+ font-size:15px;
+ cursor:pointer;
+}
+.menu button{
+ width:100%;
+ margin:5px 0;
+ text-align:left;
+ background:#e8f0ff;
+ color:#123b72;
+}
+input,select{
+ width:100%;
+ padding:13px;
+ margin:7px 0 14px;
+ border:1px solid #cbd5e1;
+ border-radius:8px;
+ font-size:15px;
+ background:white;
+}
+label{font-weight:bold;font-size:14px}
+.page{display:none}
+.page.active{display:block}
+.back{
+ background:#64748b;
+ margin-bottom:12px;
+}
+.student{
+ background:#f1f5f9;
+ padding:13px;
+ border-radius:9px;
+ margin-top:10px;
+}
+.student button{
+ padding:8px;
+ font-size:13px;
+ margin-top:8px;
+}
+.delete{background:#dc2626}
+.edit{background:#0f766e}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>SchoolPro</h1>
+<p>School Management System</p>
+</header>
+
+<div class="container">
+
+<!-- DASHBOARD -->
+<section id="home" class="page active">
+
+<h2>স্বাগতম! 👋</h2>
+<p>আপনার স্কুলের ব্যবস্থাপনা ড্যাশবোর্ড</p>
+
+<div class="stats">
+<div class="stat">
+<h3>মোট শিক্ষার্থী</h3>
+<p id="totalStudents">0</p>
+</div>
+
+<div class="stat">
+<h3>মোট শিক্ষক</h3>
+<p>0</p>
+</div>
+
+<div class="stat">
+<h3>মোট ক্লাস</h3>
+<p>0</p>
+</div>
+
+<div class="stat">
+<h3>বকেয়া বেতন</h3>
+<p>৳0</p>
+</div>
+</div>
+
+<div class="card menu">
+<h3>ম্যানেজমেন্ট মেনু</h3>
+<button onclick="showPage('students')">👨‍🎓 শিক্ষার্থী ব্যবস্থাপনা</button>
+<button onclick="alert('পরবর্তী ধাপে তৈরি হবে')">👨‍🏫 শিক্ষক ব্যবস্থাপনা</button>
+<button onclick="alert('পরবর্তী ধাপে তৈরি হবে')">📚 ক্লাস ও বিভাগ</button>
+<button onclick="alert('পরবর্তী ধাপে তৈরি হবে')">💰 বেতন ব্যবস্থাপনা</button>
+<button onclick="alert('পরবর্তী ধাপে তৈরি হবে')">📊 পরীক্ষার ফলাফল</button>
+<button onclick="alert('পরবর্তী ধাপে তৈরি হবে')">📅 হাজিরা ব্যবস্থাপনা</button>
+</div>
+
+</section>
+
+<!-- STUDENT MANAGEMENT -->
+<section id="students" class="page">
+
+<button class="back" onclick="showPage('home')">← Dashboard</button>
+
+<div class="card">
+<h2>👨‍🎓 শিক্ষার্থী ব্যবস্থাপনা</h2>
+<p>নতুন শিক্ষার্থীর তথ্য যোগ করুন</p>
+
+<form id="studentForm">
+
+<label>শিক্ষার্থীর নাম</label>
+<input id="name" type="text" placeholder="পূর্ণ নাম লিখুন" required>
+
+<label>রোল নম্বর</label>
+<input id="roll" type="number" placeholder="রোল নম্বর" required>
+
+<label>শ্রেণি</label>
+<select id="className" required>
+<option value="">শ্রেণি নির্বাচন করুন</option>
+<option>Playgroup</option>
+<option>Nursery</option>
+<option>KG</option>
+<option>১ম</option>
+<option>২য়</option>
+<option>৩য়</option>
+<option>৪র্থ</option>
+<option>৫ম</option>
+<option>৬ষ্ঠ</option>
+<option>৭ম</option>
+<option>৮ম</option>
+<option>৯ম</option>
+<option>১০ম</option>
+<option>১১শ</option>
+<option>১২শ</option>
+</select>
+
+<label>অভিভাবকের নাম</label>
+<input id="guardian" type="text" placeholder="অভিভাবকের নাম">
+
+<label>মোবাইল নম্বর</label>
+<input id="phone" type="tel" placeholder="01XXXXXXXXX">
+
+<button type="submit" id="saveBtn" style="width:100%">
+শিক্ষার্থী সংরক্ষণ করুন
+</button>
+
+</form>
+</div>
+
+<div class="card">
+<h3>📋 শিক্ষার্থীর তালিকা</h3>
+<p>মোট শিক্ষার্থী: <b id="listCount">0</b></p>
+<input id="search" type="search" placeholder="নাম বা রোল দিয়ে খুঁজুন..." oninput="renderStudents()">
+<div id="studentList"></div>
+</div>
+
+</section>
+
+</div>
+
+<script>
+
+let students = JSON.parse(
+ localStorage.getItem("schoolpro_students") || "[]"
+);
+
+let editId = null;
+
+function saveData(){
+ localStorage.setItem(
+  "schoolpro_students",
+  JSON.stringify(students)
+ );
+}
+
+function showPage(id){
+ document.querySelectorAll(".page").forEach(p=>{
+  p.classList.remove("active");
+ });
+ document.getElementById(id).classList.add("active");
+ renderStudents();
+}
+
+document.getElementById("studentForm")
+.addEventListener("submit",function(e){
+
+ e.preventDefault();
+
+ const student={
+  id: editId || Date.now(),
+  name: document.getElementById("name").value.trim(),
+  roll: document.getElementById("roll").value.trim(),
+  className: document.getElementById("className").value,
+  guardian: document.getElementById("guardian").value.trim(),
+  phone: document.getElementById("phone").value.trim()
+ };
+
+ if(!student.name || !student.roll || !student.className){
+  alert("প্রয়োজনীয় তথ্য পূরণ করুন");
+  return;
+ }
+
+ const duplicate = students.some(s=>
+  s.className === student.className &&
+  s.roll === student.roll &&
+  s.id !== editId
+ );
+
+ if(duplicate){
+  alert("এই শ্রেণিতে এই রোল আগে থেকেই আছে!");
+  return;
+ }
+
+ if(editId){
+  students=students.map(s=>
+   s.id===editId ? student : s
+  );
+  editId=null;
+  document.getElementById("saveBtn").innerText=
+   "শিক্ষার্থী সংরক্ষণ করুন";
+ }else{
+  students.push(student);
+ }
+
+ saveData();
+ this.reset();
+ renderStudents();
+
+ alert("শিক্ষার্থীর তথ্য সংরক্ষণ হয়েছে!");
+});
+
+function renderStudents(){
+
+ const list=document.getElementById("studentList");
+ const search=document.getElementById("search").value.toLowerCase();
+
+ const filtered=students.filter(s=>
+  s.name.toLowerCase().includes(search) ||
+  s.roll.includes(search) ||
+  s.className.toLowerCase().includes(search)
+ );
+
+ list.innerHTML="";
+
+ if(filtered.length===0){
+  list.innerHTML="<p>কোনো শিক্ষার্থী পাওয়া যায়নি।</p>";
+ }
+
+ filtered.forEach(s=>{
+
+  const div=document.createElement("div");
+  div.className="student";
+
+  const title=document.createElement("h3");
+  title.textContent=s.name;
+
+  const details=document.createElement("p");
+  details.textContent=
+   "রোল: "+s.roll+
+   " | শ্রেণি: "+s.className+
+   " | অভিভাবক: "+(s.guardian || "নেই")+
+   " | মোবাইল: "+(s.phone || "নেই");
+
+  const edit=document.createElement("button");
+  edit.className="edit";
+  edit.textContent="Edit";
+  edit.onclick=()=>editStudent(s.id);
+
+  const del=document.createElement("button");
+  del.className="delete";
+  del.textContent="Delete";
+  del.onclick=()=>deleteStudent(s.id);
+
+  div.append(title,details,edit,del);
+  list.appendChild(div);
+ });
+
+ document.getElementById("totalStudents").innerText=
+  students.length;
+
+ document.getElementById("listCount").innerText=
+  students.length;
+}
+
+function editStudent(id){
+
+ const s=students.find(x=>x.id===id);
+ if(!s)return;
+
+ document.getElementById("name").value=s.name;
+ document.getElementById("roll").value=s.roll;
+ document.getElementById("className").value=s.className;
+ document.getElementById("guardian").value=s.guardian;
+ document.getElementById("phone").value=s.phone;
+
+ editId=id;
+
+ document.getElementById("saveBtn").innerText=
+  "তথ্য আপডেট করুন";
+
+ document.getElementById("students").scrollIntoView();
+}
+
+function deleteStudent(id){
+
+ if(!confirm("এই শিক্ষার্থীর তথ্য মুছে ফেলবেন?"))return;
+
+ students=students.filter(s=>s.id!==id);
+ saveData();
+ renderStudents();
+}
+
+renderStudents();
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<div id="loginBox" style="display:none;position:fixed;inset:0;background:#f1f5f9;z-index:99999;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:white;padding:25px;border-radius:15px;width:100%;max-width:380px;">
+    <h2>SchoolPro Admin</h2>
+    <p>অ্যাডমিন লগইন করুন</p>
+    <input id="adminEmail" type="email" placeholder="Email" style="width:100%;padding:13px;margin:10px 0;box-sizing:border-box;">
+    <input id="adminPassword" type="password" placeholder="Password" style="width:100%;padding:13px;margin:10px 0;box-sizing:border-box;">
+    <button onclick="adminLogin()" style="width:100%;padding:14px;background:#123b72;color:white;border:0;border-radius:8px;">Login</button>
+    <p id="loginMessage"></p>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = "https://ilbbzpbbubosmdliivbh.supabase.co";
+const SUPABASE_KEY = "sb_publishable_Q-cOJtA3bRIPb_Lq7DBY7Q_uJ_msMII";
+
+const schoolDB = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const loginBox = document.getElementById("loginBox");
+
+loginBox.style.display = "flex";
+
+async function checkAdmin() {
+  const {data, error} = await schoolDB.auth.getSession();
+
+  if (!error && data.session) {
+    loginBox.style.display = "none";
+  }
+}
+
+async function adminLogin() {
+  const email = document.getElementById("adminEmail").value.trim();
+  const password = document.getElementById("adminPassword").value;
+  const message = document.getElementById("loginMessage");
+
+  message.innerText = "অপেক্ষা করুন...";
+
+  const {data, error} = await schoolDB.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+    message.innerText = error.message;
+    return;
+  }
+
+  loginBox.style.display = "none";
+}
+
+checkAdmin();
+</script>
+
+</body>
+</html>
